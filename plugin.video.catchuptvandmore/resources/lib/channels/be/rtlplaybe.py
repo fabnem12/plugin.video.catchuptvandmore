@@ -107,13 +107,6 @@ URL_LIVE_JSON = 'https://pc.middleware.6play.fr/6play/v2/platforms/m6group_web/s
 DESIRED_QUALITY = Script.setting['quality']
 
 
-def replay_entry(plugin, item_id, **kwargs):
-    """
-    First executed function after replay_bridge
-    """
-    return list_categories(plugin, item_id)
-
-
 @Route.register
 def list_categories(plugin, item_id, **kwargs):
     """
@@ -474,12 +467,8 @@ def get_video_url(plugin,
         return False
 
 
-def live_entry(plugin, item_id, **kwargs):
-    return get_live_url(plugin, item_id, item_id.upper())
-
-
 @Resolver.register
-def get_live_url(plugin, item_id, video_id, **kwargs):
+def get_live_url(plugin, item_id, **kwargs):
 
     if get_kodi_version() < 18:
         xbmcgui.Dialog().ok('Info', plugin.localize(30602))

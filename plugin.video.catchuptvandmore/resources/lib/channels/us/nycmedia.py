@@ -50,13 +50,6 @@ URL_STREAM = URL_ROOT + '/html/%s'
 # videoId
 
 
-def replay_entry(plugin, item_id, **kwargs):
-    """
-    First executed function after replay_bridge
-    """
-    return list_programs(plugin, item_id)
-
-
 @Route.register
 def list_programs(plugin, item_id, **kwargs):
     """

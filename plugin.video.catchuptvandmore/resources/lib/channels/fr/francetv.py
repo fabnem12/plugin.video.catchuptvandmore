@@ -59,15 +59,8 @@ URL_API_MOBILE = utils.urljoin_partial("https://api-mobile.yatta.francetv.fr/")
 URL_API_FRONT = utils.urljoin_partial("http://api-front.yatta.francetv.fr")
 
 
-def replay_entry(plugin, item_id, **kwargs):
-    """
-    First executed function after replay_bridge
-    """
-    return francetv_root(plugin)
-
-
 @Route.register
-def francetv_root(plugin):
+def francetv_root(plugin, item_id):
 
     # Channels
     item = Listitem()
@@ -382,12 +375,8 @@ def get_video_url(plugin,
                                                     download_mode)
 
 
-def live_entry(plugin, item_id, **kwargs):
-    return get_live_url(plugin, item_id, item_id.upper())
-
-
 @Resolver.register
-def get_live_url(plugin, item_id, video_id, **kwargs):
+def get_live_url(plugin, item_id, **kwargs):
 
     broadcast_id = 'SIM_France%s'
     return resolver_proxy.get_francetv_live_stream(
